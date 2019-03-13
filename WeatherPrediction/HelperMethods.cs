@@ -9,6 +9,15 @@ namespace WeatherPrediction
 {
     public static class HelperMethods
     {
+
+        public static void ReturnToMenu(string text)
+        {
+            if (text.ToUpper() == "MENU")
+            {
+                Console.Clear();
+                return;
+            }
+        }
         //Method to take MM/DD input and convert it to MM/DD/YY input for WeatherData Dictionary.
         public static string ToKey(string input, string year)
         {
@@ -36,6 +45,9 @@ namespace WeatherPrediction
             Console.WriteLine("Type the date for which you wanter weather info in MM/DD/YY format Data is available from 01/01/09 - 01/29/19.");
             Console.WriteLine();
             var date = Console.ReadLine();
+
+            ReturnToMenu(date);
+
             if (!data.ContainsKey(date))
             {
                 Console.WriteLine("No data was found for that day.");
@@ -65,6 +77,8 @@ namespace WeatherPrediction
             Console.WriteLine("Please provide the month and day in MM/DD format to receive a weather estimate for that day.");
             Console.WriteLine();
             var date = Console.ReadLine();
+
+            ReturnToMenu(date);
 
             //This list will contain each date (from MM/DD selected by user) in each year from 2009-2020. This will be used as keys to obtain values from WeatherData Dictionary.
             List<string> dates = new List<string>(12)
@@ -160,12 +174,15 @@ namespace WeatherPrediction
             Console.WriteLine("Thank you for adding more data to my data set! To start, please enter the month as 2 numbers (e.g. \"01\").");
             Console.WriteLine();
             var month = Console.ReadLine();
+            ReturnToMenu(month);
             Console.WriteLine("Please enter the day as 2 numbers (e.g. \"01\").");
             Console.WriteLine();
             var day = Console.ReadLine();
+            ReturnToMenu(day);
             Console.WriteLine("Please enter the year as 2 numbers (e.g. \"19\").");
             Console.WriteLine();
             var year = Console.ReadLine();
+            ReturnToMenu(year);
 
             var newKey = month + "/" + day + "/" + year;
 
@@ -175,20 +192,28 @@ namespace WeatherPrediction
             {
                 Console.WriteLine("Please enter the following data for each category.");
                 Console.WriteLine("Rainfall (in inches) on " + newKey + ": ");
-                double rain = Convert.ToDouble(Console.ReadLine());
-                Console.Clear();
+                var rainText = Console.ReadLine();
+                ReturnToMenu(rainText);
+                double rain = Convert.ToDouble(rainText);
+                Console.WriteLine();
 
                 Console.WriteLine("Snowfall (in inches) on " + newKey + ": ");
-                double snow = Convert.ToDouble(Console.ReadLine());
-                Console.Clear();
+                var snowText = Console.ReadLine();
+                ReturnToMenu(snowText);
+                double snow = Convert.ToDouble(snowText);
+                Console.WriteLine();
 
                 Console.WriteLine("The high temperature (in degrees F) on " + newKey + ": ");
-                int tempHigh = Convert.ToInt32(Console.ReadLine());
-                Console.Clear();
+                var tempHighText = Console.ReadLine();
+                ReturnToMenu(tempHighText);
+                int tempHigh = Convert.ToInt32(tempHighText);
+                Console.WriteLine();
 
                 Console.WriteLine("The low temperature (in degress F) on " + newKey + ": ");
-                int tempLow = Convert.ToInt32(Console.ReadLine());
-                Console.Clear();
+                var tempLowText = Console.ReadLine();
+                ReturnToMenu(tempLowText);
+                int tempLow = Convert.ToInt32(tempLowText);
+                Console.WriteLine();
 
                 Day newDay = new Day
                 {
@@ -202,9 +227,9 @@ namespace WeatherPrediction
 
                 string newDayData = newKey + "," + newDay.Rain + "," + newDay.Snow + "," + newDay.TempHigh + "," + newDay.TempLow;
 
-                using (StreamWriter sw = new StreamWriter("../../../WeatherData/WeatherData.csv"))
+                using (StreamWriter sw = new StreamWriter("../../../WeatherData/WeatherData.csv", true))
                 {
-                    sw.WriteLine(newDayData, true);
+                    sw.WriteLine(newDayData);
                 }
                 Console.WriteLine();
                 Console.WriteLine("This data has been written to the .csv file. Thanks!");

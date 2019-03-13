@@ -42,7 +42,9 @@ namespace WeatherPrediction
                 Console.WriteLine();
                 Console.WriteLine("To input new weather data for a specific date, please press 3.");
                 Console.WriteLine();
-                Console.WriteLine("To exit this program, please type 'quit'.");
+                Console.WriteLine("To return to this menu at any time, please type 'menu'.");
+                Console.WriteLine();
+                Console.WriteLine("To exit this program at any time, please type 'quit'.");
                 Console.WriteLine();
                 var response = Console.ReadLine();
                 Console.WriteLine();
