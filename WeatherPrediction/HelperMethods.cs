@@ -3,23 +3,27 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace WeatherPrediction
 {
     public static class HelperMethods
     {
+        //Method to take MM/DD input and convert it to MM/DD/YY input for WeatherData Dictionary.
         public static string ToKey(string input, string year)
         {
             var Key = input + "/" + year;
             return Key;
         }
 
+        //Method to format data for a historical day that will be written to Console or external file.
         public static string GetHistoricalText(Day day, string date)
         {
             var text = "There was " + day.CheckPrecipitation() + " on " + date + ".";
             return text;
         }
 
+        //Method to format data for a future day that will be written to Console or external file.
         public static string GetPredictionText(Day day, string date)
         {
             var text = "There most likely be " + day.CheckPrecipitation() + " on " + date + ".";
@@ -55,6 +59,7 @@ namespace WeatherPrediction
             }
         }
 
+        //Menu option two takes a day (in MM/DD format) and returns a prediction for that day based on historical averages in the WeatherData Dictionary.
         public static void MenuOptionTwo(Dictionary<string, Day> data)
         {
             Console.WriteLine("Please provide the month and day in MM/DD format to receive a weather estimate for that day.");
@@ -147,5 +152,82 @@ namespace WeatherPrediction
             Console.ReadKey();
             Console.Clear();
         }
+
+        //Menu options three has the user input data to the data set by putting in month, day and year then answering questions about the weather on that day.
+        //This should append the information to my .csv file and add it to the WeatherData Dictionary.
+        public static void MenuOptionThree(Dictionary<string, Day> data)
+        {
+            Console.WriteLine("Thank you for adding more data to my data set! To start, please enter the month as 2 numbers (e.g. \"01\").");
+            Console.WriteLine();
+            var month = Console.ReadLine();
+            Console.WriteLine("Please enter the day as 2 numbers (e.g. \"01\").");
+            Console.WriteLine();
+            var day = Console.ReadLine();
+            Console.WriteLine("Please enter the year as 2 numbers (e.g. \"19\").");
+            Console.WriteLine();
+            var year = Console.ReadLine();
+
+            var newKey = month + "/" + day + "/" + year;
+
+            Console.Clear();
+
+            if (!data.ContainsKey(newKey))
+            {
+                Console.WriteLine("Please enter the following data for each category.");
+                Console.WriteLine("Rainfall (in inches) on " + newKey + ": ");
+                double rain = Convert.ToDouble(Console.ReadLine());
+                Console.Clear();
+
+                Console.WriteLine("Snowfall (in inches) on " + newKey + ": ");
+                double snow = Convert.ToDouble(Console.ReadLine());
+                Console.Clear();
+
+                Console.WriteLine("The high temperature (in degrees F) on " + newKey + ": ");
+                int tempHigh = Convert.ToInt32(Console.ReadLine());
+                Console.Clear();
+
+                Console.WriteLine("The low temperature (in degress F) on " + newKey + ": ");
+                int tempLow = Convert.ToInt32(Console.ReadLine());
+                Console.Clear();
+
+                Day newDay = new Day
+                {
+                    Rain = rain,
+                    Snow = snow,
+                    TempHigh = tempHigh,
+                    TempLow = tempLow
+                };
+
+                data[newKey] = newDay;
+
+                string newDayData = newKey + "," + newDay.Rain + "," + newDay.Snow + "," + newDay.TempHigh + "," + newDay.TempLow;
+
+                using (StreamWriter sw = new StreamWriter("../../../WeatherData/WeatherData.csv"))
+                {
+                    sw.WriteLine(newDayData, true);
+                }
+                Console.WriteLine();
+                Console.WriteLine("This data has been written to the .csv file. Thanks!");
+                Console.ReadKey();
+                Console.Clear();
+            }
+            else
+            {
+                Console.WriteLine("We already have data for that date. To return to the main menu, please press 1. To put in a different date, please press 2.");
+                Console.WriteLine();
+                var response = Console.ReadLine();
+
+                if (response == "2")
+                {
+                    Console.Clear();
+                    MenuOptionThree(data);
+                }
+
+                else
+                {
+                    return;
+                }
+            }
+        }   
     }
 }

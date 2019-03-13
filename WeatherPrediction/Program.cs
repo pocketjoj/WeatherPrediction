@@ -66,7 +66,7 @@ namespace WeatherPrediction
 
                 else if (response == "3")
                 {
-
+                    HelperMethods.MenuOptionThree(WeatherData);
                 }
             }
 
