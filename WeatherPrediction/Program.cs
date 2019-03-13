@@ -10,7 +10,7 @@ namespace WeatherPrediction
 {
     class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             //This builds a Dictionary to store data from WeatherData.csv, storing a key value pair of <date, Day object>.
             var WeatherData = new Dictionary<string, Day>();

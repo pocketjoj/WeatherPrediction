@@ -12,7 +12,8 @@ namespace WeatherPrediction
 
         public static void ReturnToMenu(string text)
         {
-            if (text.ToUpper() == "MENU")
+            var Text = text.ToUpper();
+            if (Text == "MENU")
             {
                 Console.Clear();
                 return;
