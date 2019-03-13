@@ -9,16 +9,6 @@ namespace WeatherPrediction
 {
     public static class HelperMethods
     {
-
-        public static void ReturnToMenu(string text)
-        {
-            var Text = text.ToUpper();
-            if (Text == "MENU")
-            {
-                Console.Clear();
-                return;
-            }
-        }
         //Method to take MM/DD input and convert it to MM/DD/YY input for WeatherData Dictionary.
         public static string ToKey(string input, string year)
         {
@@ -47,7 +37,11 @@ namespace WeatherPrediction
             Console.WriteLine();
             var date = Console.ReadLine();
 
-            ReturnToMenu(date);
+            if (date.ToUpper() == "MENU")
+            {
+                Console.Clear();
+                return;
+            }
 
             if (!data.ContainsKey(date))
             {
@@ -79,7 +73,11 @@ namespace WeatherPrediction
             Console.WriteLine();
             var date = Console.ReadLine();
 
-            ReturnToMenu(date);
+            if (date.ToUpper() == "MENU")
+            {
+                Console.Clear();
+                return;
+            }
 
             //This list will contain each date (from MM/DD selected by user) in each year from 2009-2020. This will be used as keys to obtain values from WeatherData Dictionary.
             List<string> dates = new List<string>(12)
@@ -175,15 +173,27 @@ namespace WeatherPrediction
             Console.WriteLine("Thank you for adding more data to my data set! To start, please enter the month as 2 numbers (e.g. \"01\").");
             Console.WriteLine();
             var month = Console.ReadLine();
-            ReturnToMenu(month);
+            if (month.ToUpper() == "MENU")
+            {
+                Console.Clear();
+                return;
+            }
             Console.WriteLine("Please enter the day as 2 numbers (e.g. \"01\").");
             Console.WriteLine();
             var day = Console.ReadLine();
-            ReturnToMenu(day);
+            if (day.ToUpper() == "MENU")
+            {
+                Console.Clear();
+                return;
+            }
             Console.WriteLine("Please enter the year as 2 numbers (e.g. \"19\").");
             Console.WriteLine();
             var year = Console.ReadLine();
-            ReturnToMenu(year);
+            if (year.ToUpper() == "MENU")
+            {
+                Console.Clear();
+                return;
+            }
 
             var newKey = month + "/" + day + "/" + year;
 
@@ -194,25 +204,41 @@ namespace WeatherPrediction
                 Console.WriteLine("Please enter the following data for each category.");
                 Console.WriteLine("Rainfall (in inches) on " + newKey + ": ");
                 var rainText = Console.ReadLine();
-                ReturnToMenu(rainText);
+                if (rainText.ToUpper() == "MENU")
+                {
+                    Console.Clear();
+                    return;
+                }
                 double rain = Convert.ToDouble(rainText);
                 Console.WriteLine();
 
                 Console.WriteLine("Snowfall (in inches) on " + newKey + ": ");
                 var snowText = Console.ReadLine();
-                ReturnToMenu(snowText);
+                if (snowText.ToUpper() == "MENU")
+                {
+                    Console.Clear();
+                    return;
+                }
                 double snow = Convert.ToDouble(snowText);
                 Console.WriteLine();
 
                 Console.WriteLine("The high temperature (in degrees F) on " + newKey + ": ");
                 var tempHighText = Console.ReadLine();
-                ReturnToMenu(tempHighText);
+                if (tempHighText.ToUpper() == "MENU")
+                {
+                    Console.Clear();
+                    return;
+                }
                 int tempHigh = Convert.ToInt32(tempHighText);
                 Console.WriteLine();
 
                 Console.WriteLine("The low temperature (in degress F) on " + newKey + ": ");
                 var tempLowText = Console.ReadLine();
-                ReturnToMenu(tempLowText);
+                if (tempLowText.ToUpper() == "MENU")
+                {
+                    Console.Clear();
+                    return;
+                }
                 int tempLow = Convert.ToInt32(tempLowText);
                 Console.WriteLine();
 

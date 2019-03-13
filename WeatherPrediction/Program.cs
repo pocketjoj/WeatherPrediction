@@ -34,6 +34,7 @@ namespace WeatherPrediction
             //Code below is menu loop. If data is appended to WeatherData.csv, it will append at end of each loop. 
             while (true)
             {
+
                 Console.WriteLine("Welcome to my Weather Almanac!");
                 Console.WriteLine();
                 Console.WriteLine("To locate historical weather information for a specific day, please press 1.");
