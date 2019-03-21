@@ -31,6 +31,9 @@ namespace WeatherPrediction
                 }
             }
 
+            //Variable to hold how many items have been written to WeatherInfo.txt file; for labelling purposes.
+            int Counter = 0;
+
             //Code below is menu loop. If data is appended to WeatherData.csv, it will append at end of each loop. 
             while (true)
             {
@@ -57,19 +60,19 @@ namespace WeatherPrediction
                 //Option one prints temperature data to console and checks for rain/snow fall, printing data if there was rain/snow.
                 else if (response == "1")
                 {
-                    HelperMethods.MenuOptionOne(WeatherData);
+                    MenuMethods.MenuOptionOne(WeatherData, Counter);
                 }
 
                 //Option two retrieves a prediction based on historical averages for a specific month and day.
                 else if (response == "2")
                 {
-                    HelperMethods.MenuOptionTwo(WeatherData);
+                    MenuMethods.MenuOptionTwo(WeatherData, Counter);
 
                 }
 
                 else if (response == "3")
                 {
-                    HelperMethods.MenuOptionThree(WeatherData);
+                    MenuMethods.MenuOptionThree(WeatherData);
                 }
             }
 

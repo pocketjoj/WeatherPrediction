@@ -48,6 +48,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MenuMethods.cs" />
     <Compile Include="HelperMethods.cs" />
     <Compile Include="Year.cs" />
     <Compile Include="Day.cs" />
