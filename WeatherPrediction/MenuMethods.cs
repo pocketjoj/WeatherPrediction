@@ -309,61 +309,71 @@ namespace WeatherPrediction
                 Console.WriteLine("Please enter the following data for each category.");
                 Console.WriteLine("Rainfall (in inches) on " + newKey + ": ");
                 var rainText = Console.ReadLine();
-                if (rainText.ToUpper() == "MENU")
+
+                try
                 {
-                    Console.Clear();
-                    return;
+                    if (rainText.ToUpper() == "MENU")
+                    {
+                        Console.Clear();
+                        return;
+                    }
+                    double rain = Convert.ToDouble(rainText);
+                    Console.WriteLine();
+
+                    Console.WriteLine("Snowfall (in inches) on " + newKey + ": ");
+                    var snowText = Console.ReadLine();
+                    if (snowText.ToUpper() == "MENU")
+                    {
+                        Console.Clear();
+                        return;
+                    }
+                    double snow = Convert.ToDouble(snowText);
+                    Console.WriteLine();
+
+                    Console.WriteLine("The high temperature (in degrees F) on " + newKey + ": ");
+                    var tempHighText = Console.ReadLine();
+                    if (tempHighText.ToUpper() == "MENU")
+                    {
+                        Console.Clear();
+                        return;
+                    }
+                    int tempHigh = Convert.ToInt32(tempHighText);
+                    Console.WriteLine();
+
+                    Console.WriteLine("The low temperature (in degress F) on " + newKey + ": ");
+                    var tempLowText = Console.ReadLine();
+                    if (tempLowText.ToUpper() == "MENU")
+                    {
+                        Console.Clear();
+                        return;
+                    }
+                    int tempLow = Convert.ToInt32(tempLowText);
+                    Console.WriteLine();
+
+                    Day newDay = new Day
+                    {
+                        Rain = rain,
+                        Snow = snow,
+                        TempHigh = tempHigh,
+                        TempLow = tempLow
+                    };
+
+                    data[newKey] = newDay;
+
+                    string newDayData = newKey + "," + newDay.Rain + "," + newDay.Snow + "," + newDay.TempHigh + "," + newDay.TempLow;
+
+                    HelperMethods.AppendData("../../../WeatherData/WeatherData.csv", newDayData);
+                    Console.WriteLine("Press any key to return to the menu.");
+                    Console.ReadKey();
                 }
 
-                double rain = Convert.ToDouble(rainText);
-                Console.WriteLine();
-
-                Console.WriteLine("Snowfall (in inches) on " + newKey + ": ");
-                var snowText = Console.ReadLine();
-                if (snowText.ToUpper() == "MENU")
+                catch (System.Exception)
                 {
+                    Console.WriteLine("For rainfall, snowfall and temperatures, please only use numbers. Press any key to start over.");
+                    Console.ReadKey();
                     Console.Clear();
-                    return;
+                    MenuOptionThree(data);
                 }
-                double snow = Convert.ToDouble(snowText);
-                Console.WriteLine();
-
-                Console.WriteLine("The high temperature (in degrees F) on " + newKey + ": ");
-                var tempHighText = Console.ReadLine();
-                if (tempHighText.ToUpper() == "MENU")
-                {
-                    Console.Clear();
-                    return;
-                }
-                int tempHigh = Convert.ToInt32(tempHighText);
-                Console.WriteLine();
-
-                Console.WriteLine("The low temperature (in degress F) on " + newKey + ": ");
-                var tempLowText = Console.ReadLine();
-                if (tempLowText.ToUpper() == "MENU")
-                {
-                    Console.Clear();
-                    return;
-                }
-                int tempLow = Convert.ToInt32(tempLowText);
-                Console.WriteLine();
-
-                Day newDay = new Day
-                {
-                    Rain = rain,
-                    Snow = snow,
-                    TempHigh = tempHigh,
-                    TempLow = tempLow
-                };
-
-                data[newKey] = newDay;
-
-                string newDayData = newKey + "," + newDay.Rain + "," + newDay.Snow + "," + newDay.TempHigh + "," + newDay.TempLow;
-
-                HelperMethods.AppendData("../../../WeatherData/WeatherData.csv", newDayData);
-                Console.WriteLine("Press any key to return to the menu.");
-                Console.ReadKey();
-
             }
             else
             {
