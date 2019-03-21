@@ -76,7 +76,10 @@ namespace WeatherPrediction
                         Console.WriteLine("Please enter either \"Yes\" or \"No\".");
                         Console.WriteLine();
                         Console.ReadKey();
+                        Console.Clear();
                     }
+
+                    Console.Clear();
                 }
 
             }
