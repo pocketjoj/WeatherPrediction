@@ -342,11 +342,13 @@ namespace WeatherPrediction
                         Console.Clear();
                         return;
                     }
+
                     int tempHigh = Convert.ToInt32(tempHighText);
                     Console.WriteLine();
 
                     Console.WriteLine("The low temperature (in degress F) on " + newKey + ": ");
                     var tempLowText = Console.ReadLine();
+
                     if (tempLowText.ToUpper() == "MENU")
                     {
                         Console.Clear();
@@ -370,6 +372,7 @@ namespace WeatherPrediction
                     HelperMethods.AppendData("../../../WeatherData/WeatherData.csv", newDayData);
                     Console.WriteLine("Press any key to return to the menu.");
                     Console.ReadKey();
+                    Console.Clear();
                 }
 
                 catch (System.Exception)
@@ -382,20 +385,9 @@ namespace WeatherPrediction
             }
             else
             {
-                Console.WriteLine("We already have data for that date. To return to the main menu, please press 1. To put in a different date, please press 2.");
+                Console.WriteLine("We already have data for that date. Press any key to return to the main menu.");
                 Console.WriteLine();
-                var response = Console.ReadLine();
-
-                if (response == "2")
-                {
-                    Console.Clear();
-                    MenuOptionThree(data);
-                }
-
-                else
-                {
-                    return;
-                }
+                Console.ReadKey();
             }
         }
     }
