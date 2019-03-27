@@ -12,8 +12,6 @@ Some known limitations:
 
 3. Some of the validations may still have a couple holes. I tried to be as exhaustive as possible to ensure invalid dates would loop properly, returning an error and prompting the user for an accurately formatted response. However, there may be some loopholes.
 
-4. WeatherInfo.txt is meant to keep a count of your entries that you put in. However, if you close the program and re-open, it will append the data, starting at "1". You'd need to delete the WeatherInfo.txt file in order for the counter to start over properly.
-
 I would love any feedback you have to give on this! Thank you for taking to time to look at it!
 
 Joel
