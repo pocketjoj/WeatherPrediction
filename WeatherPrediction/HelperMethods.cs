@@ -34,6 +34,7 @@ namespace WeatherPrediction
             count++;
             var Text = "Entry " + count + ": Historical Data" + Environment.NewLine;
             Text += "Info obtained at " + GetTimeStamp() + "." + Environment.NewLine + Environment.NewLine;
+            Text += "The high for " + date + " was " + day.TempHigh + ", and the low was " + day.TempLow + "." + Environment.NewLine;
             Text += GetHistoricalText(day, date) + Environment.NewLine + Environment.NewLine;
             return Text;
         }
@@ -49,13 +50,15 @@ namespace WeatherPrediction
             count++;
             var Text = "Entry " + count + ": Prediction Data" + Environment.NewLine;
             Text += "Info obtained at " + GetTimeStamp() + "." + Environment.NewLine + Environment.NewLine;
-            Text += GetHistoricalText(day, date) + Environment.NewLine + Environment.NewLine;
+            Text += "The high for " + date + " is predicted to be " + day.TempHigh + ", and the low will be " + day.TempLow + "." + Environment.NewLine;
+            Text += GetPredictionText(day, date) + Environment.NewLine + Environment.NewLine;
             return Text;
         }
 
         //This method appends data to the file.
-        public static void AppendData(string fileName, string text)
+        public static void WriteData(string fileName, string text)
         {
+
             using (StreamWriter sw = new StreamWriter(fileName, true))
             {
                 sw.WriteLine(text);

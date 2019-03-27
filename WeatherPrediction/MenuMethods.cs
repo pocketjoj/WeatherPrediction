@@ -58,11 +58,12 @@ namespace WeatherPrediction
 
                     if (response.ToUpper() == "YES")
                     {
-                        HelperMethods.AppendData("../../../WeatherData/WeatherInfo.txt", HelperMethods.GetHistoricalText(data[date], date, Counter));
+
+                        HelperMethods.WriteData("../../../WeatherData/WeatherInfo.txt", HelperMethods.GetHistoricalText(data[date], date, Counter));
                         Console.WriteLine("Press any key to return to the menu.");
                         Console.ReadKey();
-
                         break;
+                        
                     }
 
                     else if (response.ToUpper() == "NO")
@@ -200,7 +201,7 @@ namespace WeatherPrediction
 
                     if (response.ToUpper() == "YES")
                     {
-                        HelperMethods.AppendData("../../../WeatherData/WeatherInfo.txt", HelperMethods.GetPredictionText(Prediction, date, Counter));
+                        HelperMethods.WriteData("../../../WeatherData/WeatherInfo.txt", HelperMethods.GetPredictionText(Prediction, date, Counter));
                         Console.WriteLine("Press any key to return to the menu.");
                         Console.ReadKey();
                         break;
@@ -369,7 +370,7 @@ namespace WeatherPrediction
 
                     string newDayData = newKey + "," + newDay.Rain + "," + newDay.Snow + "," + newDay.TempHigh + "," + newDay.TempLow;
 
-                    HelperMethods.AppendData("../../../WeatherData/WeatherData.csv", newDayData);
+                    HelperMethods.WriteData("../../../WeatherData/WeatherData.csv", newDayData);
                     Console.WriteLine("Press any key to return to the menu.");
                     Console.ReadKey();
                     Console.Clear();
