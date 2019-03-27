@@ -61,6 +61,7 @@ namespace WeatherPrediction
                         HelperMethods.AppendData("../../../WeatherData/WeatherInfo.txt", HelperMethods.GetHistoricalText(data[date], date, Counter));
                         Console.WriteLine("Press any key to return to the menu.");
                         Console.ReadKey();
+
                         break;
                     }
 
@@ -73,15 +74,14 @@ namespace WeatherPrediction
 
                     else
                     {
-                        Console.WriteLine("Please enter either \"Yes\" or \"No\".");
+                        Console.WriteLine("Please enter either \"Yes\" or \"No\". Press any key to try again.");
                         Console.WriteLine();
                         Console.ReadKey();
                         Console.Clear();
                     }
 
-                    Console.Clear();
                 }
-
+                Console.Clear();
             }
         }
 
@@ -98,7 +98,8 @@ namespace WeatherPrediction
                 return;
             }
 
-            if ((date.Length != 5) || (date[2] != '/'))
+            //This rather long if statement checks that the date is formatted correctly by checking for length of string, / mark and that day and month are not too high of values.
+            if ((date.Length != 5) || (date[2] != '/') || (int.TryParse(date[0].ToString() + date[1].ToString(), out int month) && month > 13) || (int.TryParse(date[3].ToString() + date[4].ToString(), out int day) && day > 32))
             {
                 Console.WriteLine("Date formatted incorrectly. Must be in MM/DD format only. Press any key to try again.");
                 Console.ReadKey();
@@ -199,7 +200,7 @@ namespace WeatherPrediction
 
                     if (response.ToUpper() == "YES")
                     {
-                        HelperMethods.AppendData("../../../WeatherData/WeatherInfo.txt", HelperMethods.GetPredictionText(data[date], date, Counter));
+                        HelperMethods.AppendData("../../../WeatherData/WeatherInfo.txt", HelperMethods.GetPredictionText(Prediction, date, Counter));
                         Console.WriteLine("Press any key to return to the menu.");
                         Console.ReadKey();
                         break;
@@ -214,13 +215,14 @@ namespace WeatherPrediction
 
                     else
                     {
-                        Console.WriteLine("Please enter either \"Yes\" or \"No\".");
+                        Console.WriteLine("Please enter either \"Yes\" or \"No\". Press any key to try again.");
                         Console.WriteLine();
                         Console.ReadKey();
                         Console.Clear();
                     }
-                    Console.Clear();
+                    
                 }
+                Console.Clear();
             }
         }
 
