@@ -60,13 +60,13 @@ namespace WeatherPrediction
                 //Option one prints temperature data to console and checks for rain/snow fall, printing data if there was rain/snow.
                 else if (response == "1")
                 {
-                    MenuMethods.MenuOptionOne(WeatherData, Counter);
+                    MenuMethods.MenuOptionOne(WeatherData, ref Counter);
                 }
 
                 //Option two retrieves a prediction based on historical averages for a specific month and day.
                 else if (response == "2")
                 {
-                    MenuMethods.MenuOptionTwo(WeatherData, Counter);
+                    MenuMethods.MenuOptionTwo(WeatherData, ref Counter);
 
                 }
 

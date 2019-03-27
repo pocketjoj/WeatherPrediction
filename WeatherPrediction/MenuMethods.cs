@@ -10,7 +10,7 @@ namespace WeatherPrediction
     public static class MenuMethods
     {
         //Menu option one prints temperature data to console and checks for rain/snow fall, printing data if there was rain/snow.
-        public static void MenuOptionOne(Dictionary<string, Day> data, int Counter)
+        public static void MenuOptionOne(Dictionary<string, Day> data, ref int Counter)
         {
             Console.WriteLine("Type the date for which you wanter weather info in MM/DD/YY format Data is available from 01/01/09 - 01/29/19.");
             Console.WriteLine();
@@ -29,7 +29,7 @@ namespace WeatherPrediction
                 Console.WriteLine();
                 Console.ReadKey();
                 Console.Clear();
-                MenuOptionOne(data, Counter);
+                MenuOptionOne(data, ref Counter);
             }
 
             else if (!data.ContainsKey(date))
@@ -40,7 +40,7 @@ namespace WeatherPrediction
                 Console.WriteLine();
                 Console.ReadKey();
                 Console.Clear();
-                MenuOptionOne(data, Counter);
+                MenuOptionOne(data, ref Counter);
             }
 
             else
@@ -59,7 +59,7 @@ namespace WeatherPrediction
                     if (response.ToUpper() == "YES")
                     {
 
-                        HelperMethods.WriteData("../../../WeatherData/WeatherInfo.txt", HelperMethods.GetHistoricalText(data[date], date, Counter));
+                        HelperMethods.WriteData("../../../WeatherData/WeatherInfo.txt", HelperMethods.GetHistoricalText(data[date], date, ref Counter));
                         Console.WriteLine("Press any key to return to the menu.");
                         Console.ReadKey();
                         break;
@@ -87,7 +87,7 @@ namespace WeatherPrediction
         }
 
         //Menu option two takes a day (in MM/DD format) and returns a prediction for that day based on historical averages in the WeatherData Dictionary.
-        public static void MenuOptionTwo(Dictionary<string, Day> data, int Counter)
+        public static void MenuOptionTwo(Dictionary<string, Day> data, ref int Counter)
         {
             Console.WriteLine("Please provide the month and day in MM/DD format to receive a weather estimate for that day.");
             Console.WriteLine();
@@ -105,7 +105,7 @@ namespace WeatherPrediction
                 Console.WriteLine("Date formatted incorrectly. Must be in MM/DD format only. Press any key to try again.");
                 Console.ReadKey();
                 Console.Clear();
-                MenuOptionTwo(data, Counter);
+                MenuOptionTwo(data, ref Counter);
             }
 
             else
@@ -201,7 +201,7 @@ namespace WeatherPrediction
 
                     if (response.ToUpper() == "YES")
                     {
-                        HelperMethods.WriteData("../../../WeatherData/WeatherInfo.txt", HelperMethods.GetPredictionText(Prediction, date, Counter));
+                        HelperMethods.WriteData("../../../WeatherData/WeatherInfo.txt", HelperMethods.GetPredictionText(Prediction, date, ref Counter));
                         Console.WriteLine("Press any key to return to the menu.");
                         Console.ReadKey();
                         break;

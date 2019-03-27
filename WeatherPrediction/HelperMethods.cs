@@ -29,7 +29,7 @@ namespace WeatherPrediction
             return text;
         }
 
-        public static string GetHistoricalText(Day day, string date, int count)
+        public static string GetHistoricalText(Day day, string date, ref int count)
         {
             count++;
             var Text = "Entry " + count + ": Historical Data" + Environment.NewLine;
@@ -45,7 +45,7 @@ namespace WeatherPrediction
             return text;
         }
 
-        public static string GetPredictionText(Day day, string date, int count)
+        public static string GetPredictionText(Day day, string date, ref int count)
         {
             count++;
             var Text = "Entry " + count + ": Prediction Data" + Environment.NewLine;
